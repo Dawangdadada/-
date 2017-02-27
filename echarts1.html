@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bar-line</title>
+	<script src="http:\\cdn.bootcss.com/echarts/3.4.0/echarts.common.js"></script>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+	<div id="mychart" style="width:600px;height:400px"><div>
+	<script type="text/javascript">
+	var mychart=echarts.init(document.getElementById("mychart"));
+    mychart.setOption({
+    	title:{
+    		text:'未来一周上海气象变化'
+    	},
+
+        tooltip:{
+
+        	trigger:'axis'
+        },
+        legend:{
+        	right:30,
+        	data:['最高气温','最低气温','平均气温']
+        },
+        xAxis:[{
+        	type:'category',
+        	data:['周一','周二','周三','周四','周五','周六','周日']
+        }],
+        yAxis:[{
+        	type:'value',
+        	name:'温度/℃',
+        	min:0,
+        	max:25,
+        	interval:5,
+        	axisLable:{
+        		formatter:'{value} ℃'
+        	}
+        }],
+        series:[
+        {
+        name:'最高气温',
+        type:'bar',
+        data:[14,15,15,10,20,23,25]
+        },
+        {
+        name:'最低气温',
+        type:'bar',
+        data:[0,6,4,3,5,8,10]
+        },
+        {
+        name:'平均气温',
+        type:'line',
+        data:[7,10.5,9.5,7.5,12.5,15.5,17.5]
+        }
+        ]
+    });
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>
