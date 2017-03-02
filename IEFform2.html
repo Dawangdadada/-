@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务二：表单（二）多个表单项的动态校验</title>
+</head>
+<style type="text/css">
+div{
+	margin:0 auto;
+	width: 600px;
+}
+input{
+	width:400px;
+	height: 50px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	outline: none;
+}
+th,td{
+	padding: 10px;
+	text-align: left;
+}
+button{
+	width: 100px;
+	height: 50px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	outline: none;
+	line-height: 50px;
+	font-size: 1.5em;
+	color: #fff;
+	background-color: rgb(47,121,186);
+}
+span{
+	color:#999;
+
+}
+	
+</style>
+<body>
+	<div>
+	    <table>
+	    	<tr>
+	    		<th>名称</th>
+	    		<td><input /></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td><span></span></td>
+	    		
+	    	</tr>
+	    	<tr>
+	    		<th>密码</th>
+	    		<td><input type="password" /></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td><span></span></td>
+	    		
+	    	</tr>
+	    	<tr>
+	    		<th>密码确认</th>
+	    		<td><input type="password"/></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td><span></span></td>
+	    		
+	    	</tr>
+
+	    	<tr>
+	    		<th>邮箱</th>
+	    		<td><input/></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td><span></span></td>
+	    		
+	    	</tr>
+	    	<tr>
+	    		<th>手机</th>
+	    		<td><input/></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td><span></span></td>
+	    	</tr>
+	    	<tr>
+	    		<th></th>
+	    		<td> <button>提交</button></td>
+	    	</tr>	    	
+	 </table>
+    </div>
+    <script type="text/javascript">
+    var input=document.getElementsByTagName("input");
+    var span=document.getElementsByTagName("span");
+   /* var input0=input[0].value;
+    var input1=input[1].value;
+    var input2=input[2].value;
+    var input3=input[3].value;
+    var input4=input[4].value;*/
+    //不能定义在这里，会导致无法更新输入框的内容
+    //名称提示
+   input[0].onfocus=function(){
+    var input0=input[0].value;
+    span[0].innerHTML="必填字段，长度为4~16个字符";
+    span[0].style.color="#999";
+    input[0].style.border="1px solid #999";
+    }
+    //input[0].onfocus=remindname();
+    //密码提示
+       input[1].onfocus=function() {
+    	span[1].innerHTML="密码数字和字母组合，6~10位";
+    	span[1].style.color="#999";
+        input[1].style.border="1px solid #999";
+    }
+    //input[1].onfocus=remindpassword1();
+    //密码确认提示
+   input[2].onfocus=function(){
+    span[2].innerHTML="再次输入相同的密码";
+    span[2].style.color="#999";
+    input[2].style.border="1px solid #999";
+    }
+    //input[2].onfocus=remindpassword2();
+    //名称验证
+  input[0].onblur=function() {
+         var input0=input[0].value;
+    	 var iinput0=input0.replace(/[^\x00-\xff]/g,"**").length;
+    	if(input0=="")
+    	{
+    		span[0].innerHTML="名称不能为空";
+    		span[0].style.color="red";
+    		input[0].style.border="1px solid red";
+    	}
+    	else if(iinput0<4||iinput0>16)
+    	{
+            span[0].innerHTML="必填字段，长度为4~16个字符";
+    		span[0].style.color="red";
+    		input[0].style.border="1px solid red";
+    	}
+    	else
+    	{
+    		span[0].innerHTML="名称格式正确";
+    		span[0].style.color="green";
+    		input[0].style.border="1px solid green";
+    	}    
+    }
+   // input[0].onblur=checkname();
+   //密码验证
+   input[1].onblur=function(){
+    var input1=input[1].value;
+   	var reg=/^\w{6,10}$/;
+     if(reg.test(input1))
+     {
+     	span[1].innerHTML="密码可用";
+    	span[1].style.color="green";
+    	input[1].style.border="1px solid green";
+     }
+     else{
+     	span[1].innerHTML="密码数字和字母组合,6~10位";
+    	span[1].style.color="red";
+    	input[1].style.border="1px solid red";
+     }
+ }
+    //input[1].onblur=checkpassword1();
+
+    //密码确认验证
+    input[2].onblur=function(){
+           var input2=input[2].value;
+           var input1=input[1].value;
+        if(input2==""){
+         span[2].innerHTML="请输入密码";
+         span[2].style.color="red";
+         input[2].style.border="1px solid red";
+        }
+    	else if(input2===input1)
+        {
+   		span[2].innerHTML="密码输入一致";
+    		span[2].style.color="green";
+    		input[2].style.border="1px solid green";
+    	}
+    	else{
+    		span[2].innerHTML="密码输入不一致";
+    		span[2].style.color="red";
+    		input[2].style.border="1px solid red";
+    	}
+
+    }
+   // input[2].onblur=checkpassword2();
+    //验证邮箱
+      input[3].onblur =function(){
+        var input3=input[3].value;
+    	var reg=/^\w+@(\w+).com$/;
+    	if(reg.test(input3))
+    	{ 
+    		span[3].innerHTML="邮箱格式正确";
+    		span[3].style.color="green";
+    		input[3].style.border="1px solid green";
+    	}
+    	else{
+    		span[3].innerHTML="邮箱格式错误";
+    		span[3].style.color="red";
+    		input[3].style.border="1px solid red";
+    	}
+
+    }
+    //input[3].onblur=checkmailbox();
+    //验证手机号
+        input[4].onblur=function() {
+            var input4=input[4].value;
+    	var reg=/^1[34578]\d{9}$/;
+        //console.log(reg.test("18717850835"));
+    	if(reg.test(input4)){        
+           span[4].innerHTML="手机格式正确";
+    		span[4].style.color="green";
+    		input[4].style.border="1px solid green";
+    	}
+
+        else{
+            span[4].innerHTML="手机格式错误";
+    		span[4].style.color="red";
+    		input[4].style.border="1px solid red";
+
+        }
+    }
+       // input[4].onblur=checkphone();
+        document.getElementsByTagName("button")[0].onclick=function(){
+            var array=[];
+            for(var i=0;i<5;i++)
+            {
+                if(span[i].style.color=="red")
+                    array.push(0);
+                else
+                    array.push(1);      
+            }
+            if(array.indexOf(0)==-1)
+                alert("提交成功");
+            else
+                alert("输入有误");
+    }
+        //函数声明语句和函数定义语句；
+       //注意什么时候应该用全局变量什么时候应该用局部变量
+    </script>
+
+</body>
+</html>
+
+
