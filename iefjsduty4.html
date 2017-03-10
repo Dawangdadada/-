@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟队列</title>
+	<style type="text/css">
+      .button3{
+      	margin-left: 40px;
+
+      }
+     #div span{
+     	display: inline-block;
+      	background-color: red;
+      	margin-left: 20px;
+      }
+	</style>
+	
+
+
+</head>
+<body>
+	<input >
+	<button>左侧入</button>
+	<button>右侧入</button>
+	<button class="button3">左侧出</button>
+	<button>右侧出</button>
+	<div id="div"></div>
+	<script type="text/javascript">
+        var n=document.getElementsByTagName("button");
+         var div=document.getElementById("div");
+     n[0].onclick=function(){
+     	var inputval=document.getElementsByTagName("input")[0].value;
+     	var span=document.createElement("span");
+     	span.innerHTML=inputval;
+     	var m=document.getElementsByTagName("span").length;
+     	if(m==0)
+     		div.appendChild(span);
+     	else
+     	  div.insertBefore(span,div.firstChild);
+     }
+     n[1].onclick=function(){
+         var inputval=document.getElementsByTagName("input")[0].value;
+     	  var span=document.createElement("span");
+     	  span.innerHTML=inputval;
+     	div.appendChild(span);
+     }
+     n[2].onclick=function(){
+     	div.removeChild(div.firstChild);
+     }
+    n[3].onclick=function(){
+     	div.removeChild(div.lastChild);
+     }
+
+
+
+
+
+
+
+	</script>
+	
+</body>
+</html>
